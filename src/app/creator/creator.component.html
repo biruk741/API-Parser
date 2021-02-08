@@ -1,0 +1,20 @@
+<div class="card-float">
+  <button id="record-btn" type="button" class="btn btn-success">✓ Save changes</button>
+
+  <h1>Create new entry:</h1>
+  <form>
+    <div class="name input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Name of component</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Description</label>
+      <input type="text" class="form-control" id="formGroupExampleInput"
+        placeholder="Enter component's description here">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="addField()">+ Add Component</button>
+  </form>
+  <app-entry-list-item (del)="deleteItem(i)" *ngFor="let dataField of dataFields;index as i"></app-entry-list-item>
+</div>
