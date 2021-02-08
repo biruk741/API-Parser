@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { DataService } from '../data.service';
+import { DataType } from '../models/data-type';
 
 @Component({
   selector: 'app-displayer',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayerComponent implements OnInit {
 
-  constructor() { }
+  dataTypes : DataType[] = this.data.getDataTypes(true);
+
+  constructor(private data : DataService) { }
 
   ngOnInit(): void {
+    this.dataTypes = this.data.getDataTypes(true);
+    console.log(this.dataTypes.length);
   }
-
 }

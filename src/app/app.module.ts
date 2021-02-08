@@ -8,6 +8,8 @@ import { CreatorComponent } from './creator/creator.component';
 import { DisplayerComponent } from './displayer/displayer.component';
 import { EntryListItemComponent } from './creator/entry-list-item/entry-list-item.component';
 import { DisplayListItemComponent } from './displayer/display-list-item/display-list-item.component';
+import { ContentComponent } from './content/content.component';
+import { ContentTwoComponent } from './content-two/content-two.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { DisplayListItemComponent } from './displayer/display-list-item/display-
     CreatorComponent,
     DisplayerComponent,
     EntryListItemComponent,
-    DisplayListItemComponent
+    DisplayListItemComponent,
+    ContentComponent,
+    ContentTwoComponent
   ],
   imports: [
     BrowserModule,

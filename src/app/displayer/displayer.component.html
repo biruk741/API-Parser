@@ -1,1 +1,5 @@
-<p>displayer works!</p>
+<app-display-list-item
+ [name]="dataType.name"
+ [description]="dataType.description"
+ [dataFields]="dataType.fields"
+  *ngFor="let dataType of dataTypes"></app-display-list-item>

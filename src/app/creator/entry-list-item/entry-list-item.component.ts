@@ -7,6 +7,12 @@ import { Component, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./entry-list-item.component.css']
 })
 export class EntryListItemComponent implements OnInit {
+
+  @Input() name : string;
+  @Input() type : string;
+  @Input() optional : boolean;
+  @Input() exlusive : boolean;
+
   @Output() del = new EventEmitter();
   datatypes : string[] = [
     "String","Boolean",
