@@ -1,31 +1,47 @@
 <div class="card">
-  <div class = "desc">
-    <h2>
-      {{name}}
-    </h2>
-  <button type="button" id="edit" class="btn btn-outline-primary">Confirm Edit</button>
-  </div>
-  <form>
-    <div class="name input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Name of component</span>
+  <div *ngIf="!display">
+    <div class="desc">
+      <h2>
+        {{name}}
+      </h2>
+      <button type="button" (click)="editEntry()" id="edit" class="btn btn-primary">Confirm Edit</button>
+      <button type="button" (click)="deleteEntry()" id="delete" class="btn btn-danger">Delete</button>
+    </div>
+    <form>
+      <div class="name input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Name of component</span>
+        </div>
+        <input [(ngModel)]="name" value="{{name}}" type="text" name="name" class="form-control" aria-label="Default"
+          aria-describedby="inputGroup-sizing-default">
       </div>
-      <input value="{{name}}" type="text" class="form-control" aria-label="Default"
-        aria-describedby="inputGroup-sizing-default">
-    </div>
-    <div class="form-group">
-      <label for="formGroupExampleInput">Description</label>
-      <input value="{{description}}" type="text" class="form-control" id="formGroupExampleInput"
-        placeholder="Enter component's description here">
-    </div>
-    <button type="button" class="btn btn-primary">+ Add Component</button>
-  </form>
-  <app-entry-list-item
-  [name]="dataField.name"
-  [type]="dataField.type"
-  [optional] = "dataField.optional"
-  [exlusive] = "dataField.exclusive"
-   *ngFor="let dataField of dataFields; index as i">
+      <div class="form-group">
+        <label for="formGroupExampleInput">Description</label>
+        <input [(ngModel)]="description" value="{{description}}" name="description" type="text" class="form-control"
+          id="formGroupExampleInput" placeholder="Enter component's description here">
+      </div>
+      <button type="button" class="btn btn-primary">+ Add Component</button>
+    </form>
+    <app-entry-list-item [display] = "display" [name]="dataField.name" [type]="dataField.type" [optional]="dataField.optional"
+      [exlusive]="dataField.exclusive" (field)="update(i,$event)" *ngFor="let dataField of dataFields; index as i">
+    </app-entry-list-item>
+  </div>
 
-  </app-entry-list-item>
+  <div *ngIf="display">
+    <div *ngIf="display">
+      <div class="desc">
+        <h3>
+          {{name}}
+        </h3>
+        <button type="button" (click)="editEntry()" id="edit" class="btn btn-outline-primary">Edit</button>
+        <button type="button" (click)="deleteEntry()" id="delete" class="btn btn-outline-danger">Delete</button>
+      </div>
+      <form>
+        <p>{{description}}</p>
+      </form>
+      <app-entry-list-item [display] = "display" [name]="dataField.name" [type]="dataField.type" [optional]="dataField.optional"
+        [exlusive]="dataField.exclusive" (field)="update(i,$event)" *ngFor="let dataField of dataFields; index as i">
+      </app-entry-list-item>
+    </div>
+  </div>
 </div>

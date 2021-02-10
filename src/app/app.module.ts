@@ -10,6 +10,10 @@ import { EntryListItemComponent } from './creator/entry-list-item/entry-list-ite
 import { DisplayListItemComponent } from './displayer/display-list-item/display-list-item.component';
 import { ContentComponent } from './content/content.component';
 import { ContentTwoComponent } from './content-two/content-two.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,11 +25,15 @@ import { ContentTwoComponent } from './content-two/content-two.component';
     EntryListItemComponent,
     DisplayListItemComponent,
     ContentComponent,
-    ContentTwoComponent
+    ContentTwoComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,20 +1,26 @@
 <div class="card-float">
-  <button id="record-btn" type="button" class="btn btn-success">✓ Save changes</button>
 
   <h1>Create new entry:</h1>
+
   <form>
+    <div *ngFor="let error of errors" class="alert alert-warning" role="alert">
+      {{error.errorMessage}}
+    </div>
+  <button type="submit" (click)= "save()" id="record-btn" class="btn btn-success">✓ Save changes</button>
+
     <div class="name input-group mb-3">
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default">Name of component</span>
       </div>
-      <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+      <input [(ngModel)]="name" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name">
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput">Description</label>
-      <input type="text" class="form-control" id="formGroupExampleInput"
+      <input [(ngModel)]="description" type="text" class="form-control" id="formGroupExampleInput" name="description"
         placeholder="Enter component's description here">
     </div>
-    <button type="button" class="btn btn-primary" (click)="addField()">+ Add Component</button>
   </form>
-  <app-entry-list-item (del)="deleteItem(i)" *ngFor="let dataField of dataFields;index as i"></app-entry-list-item>
+  <app-entry-list-item [display]="false" (field)="change(i,$event)" (del)="deleteItem(i)" *ngFor="let dataField of dataFields;index as i"></app-entry-list-item>
+  <button type="button" class="btn btn-primary" (click)="addField()">+ Add Component</button>
+
 </div>

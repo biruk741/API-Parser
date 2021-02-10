@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import { DataService } from '../data.service';
 import { DataField } from '../models/data-field';
+
+import { DataType } from '../models/data-type';
+import { Validator } from "validator.ts/Validator";
+import { ValidationErrorInterface } from 'validator.ts/ValidationErrorInterface';
 
 @Component({
   selector: 'app-creator',
@@ -8,18 +14,62 @@ import { DataField } from '../models/data-field';
 })
 export class CreatorComponent implements OnInit {
 
-  dataFields : DataField[] = [];
 
-  constructor() { }
+  dataFields: DataField[] = [];
+  name: string;
+  description: string;
+
+  errors : ValidationErrorInterface[];
+
+  temp: DataField[] = [];
+
+
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
   }
 
-  addField(){
-    this.dataFields.push(new DataField("","",false,false));
-    console.log("There are " + this.dataFields.length);
+  addField() {
+    this.dataFields.push({
+      name: "",
+      type: "",
+      optional: false,
+      exclusive: false
+    });
+    this.temp.push({
+      name: "",
+      type: "",
+      optional: false,
+      exclusive: false
+    });
   }
-  deleteItem(i:number){
-    this.dataFields.splice(i,1);
+  save() {
+    let obj: DataType = { name: this.name, description: this.description, fields: this.temp }
+    let validator =  new Validator();
+    let errors = validator.validate(obj);
+
+    console.log( errors);
+
+
+    if (errors.length == 0) {
+      this.dataService.addDataType(obj)
+      this.name = "";
+      this.description = "";
+      this.dataFields = [];
+      this.temp = [];
+    } else{
+      this.errors = errors;
+    }
   }
+  deleteItem(i: number) {
+    this.dataFields.splice(i, 1);
+    this.temp.splice(i, 1);
+  }
+
+  change(i: number, dataField: DataField) {
+    this.temp[i] = dataField;
+  }
+
+
 }
