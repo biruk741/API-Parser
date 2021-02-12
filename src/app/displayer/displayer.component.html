@@ -1,5 +1,9 @@
 <div>
+  <div style="margin: auto; width: 300px;">
+    <app-search-box (search)="search($event)"></app-search-box>
+  </div>
   <app-display-list-item
+  *ngIf="displayTemp.length > 0"
   [name]="dataType.name"
    [description]="dataType.description"
     [dataFields]="dataType.fields"
