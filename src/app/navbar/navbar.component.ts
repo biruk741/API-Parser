@@ -1,5 +1,6 @@
 import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DataService } from '../data.service';
 
@@ -10,17 +11,21 @@ import { DataService } from '../data.service';
 })
 export class NavbarComponent implements OnInit {
 
-  buttonText = "Upload and Save";
+  buttonText = "Export JSON";
+  @Input() dataTypes: boolean;
 
-  constructor(private data : DataService, private toastr : ToastrService) { }
+  constructor(private data: DataService, private toastr: ToastrService,private router : Router) { }
 
   ngOnInit(): void {
   }
 
-  upload(){
-    this.buttonText = "Uploading..."
-    this.data.uploadDataTypes().then(data=>{
-      this.buttonText = "Upload and Save";
-    });
+  upload() {
+    // this.buttonText = "Uploading dataTypes..."
+    // this.data.uploadMethods();
+    // this.data.uploadDataTypes();
+    // this.data.uploadMethods()
+    this.data.downloadToFile(this.router.url);
   }
+
+
 }

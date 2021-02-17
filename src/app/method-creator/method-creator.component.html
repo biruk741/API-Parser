@@ -1,0 +1,38 @@
+<div class="card-float">
+
+  <h1>Create new method:</h1>
+
+  <form>
+    <!-- <div *ngFor="let error of errors" class="alert alert-warning" role="alert">
+      {{error.errorMessage}}
+    </div> -->
+    <button type="submit" (click)="save()" id="record-btn" class="btn btn-success">✓ Save changes</button>
+
+    <div class="name input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Name of method</span>
+      </div>
+      <input [(ngModel)]="name" type="text" class="form-control" aria-label="Default"
+        aria-describedby="inputGroup-sizing-default" name="name">
+    </div>
+    <div class="name input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Return Type</span>
+      </div>
+      <input [(ngModel)]="returnType" list="types" name="returnType" placeholder="{{!finished ? 'Loading...' : ''}}" class="form-control">
+      <datalist id="types">
+        <option *ngFor="let type of parameterTypes">{{type}}</option>
+        ...
+      </datalist>
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput">Description</label>
+      <input [(ngModel)]="description" type="text" class="form-control" id="formGroupExampleInput" name="description"
+        placeholder="Enter component's description here">
+    </div>
+  </form>
+  <app-parameter-list-item [display]="false" (field)="change(i,$event)" (del)="deleteItem(i)"
+    *ngFor="let parameter of parameters;index as i"></app-parameter-list-item>
+  <button type="button" class="btn btn-primary" (click)="addParameter()">+ Add Parameter</button>
+
+</div>

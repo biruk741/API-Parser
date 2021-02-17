@@ -1,6 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { DataService } from '../data.service';
 import { DataType } from '../models/data-type';
+import { Method } from '../models/method';
 
 @Component({
   selector: 'app-displayer',
@@ -9,31 +10,65 @@ import { DataType } from '../models/data-type';
 })
 export class DisplayerComponent implements OnInit, OnChanges {
 
-  dataTypes;
+  @Input() isForMethods : boolean = false;
+
+  displayData : DataType[] | Method[] = [];
+  displayTemp:DataType[] | Method[] = [];
+
+  noResult : boolean = false;
 
   loaded: boolean = false;
 
   constructor(private data: DataService) { }
 
   ngOnChanges(): void {
-    this.dataTypes = this.data.getDataTypes();
+    this.displayData = this.isForMethods ?
+    this.data.getMethods() :
+    this.data.getDataTypes();
   }
 
   ngOnInit(): void {
-    this.data.loadDataTypes().then(data => {
-      this.dataTypes = data;
+    // if(!this.isForMethods) this.data.loadDataTypes().then(data => {
+    //   this.displayData = data as DataType[];
+    //   this.displayTemp = data as DataType[];
+    //   this.loaded = true;
+    //   console.log(this.displayData);
+    // });
+    // else
+    if(this.isForMethods) this.data.loadMethods(data=>{
+      this.displayData = data as Method[];
+      this.displayTemp = data as Method[];
       this.loaded = true;
-      console.log(data);
-    });
+    })
+    else this.data.loadDataTypes(data=>{
+      this.displayData = data as DataType[];
+      this.displayTemp = data as DataType[];
+      this.loaded = true;
+    })
+
+    // .then(data => {
+    //   this.displayData = data as Method[];
+    //   this.displayTemp = data as Method[];
+    //   this.loaded = true;
+    //   console.log(data);
+    // });
+
   }
 
 
   delete(index: number) {
-    this.data.deleteDataType(index);
+    if(!this.isForMethods) this.data.deleteDataType(index);
+    else this.data.deleteMethod(index);
   }
-  edit(dataType: DataType, index: number) {
-    this.data.editDataType(index, dataType);
-    this.dataTypes.splice(index, 1, dataType)
-    console.log(this.dataTypes);
+  edit(data, index: number) {
+    if(!this.isForMethods){
+      this.data.editDataType(index, data);
+      (this.displayData as DataType[]).splice(index, 1, data)
+    }
+    else{
+      this.data.editMethod(index, data);
+      (this.displayData as Method[]).splice(index, 1, data)
+    }
+    console.log(this.displayData);
   }
 }

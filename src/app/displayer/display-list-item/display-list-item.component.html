@@ -22,7 +22,7 @@
       </div>
       <button type="button" class="btn btn-primary">+ Add Component</button>
     </form>
-    <app-entry-list-item [display] = "display" [name]="dataField.name" [type]="dataField.type" [optional]="dataField.optional"
+    <app-entry-list-item [display] = "display" [name]="dataField.name"  [isForMethods]="isForMethods" [type]="dataField.type" [optional]="dataField.optional"
       [exlusive]="dataField.exclusive" (field)="update(i,$event)" *ngFor="let dataField of dataFields; index as i">
     </app-entry-list-item>
   </div>
@@ -33,13 +33,19 @@
         <h3>
           {{name}}
         </h3>
+        <div class="holder">
+          <span class="alert alert-info span" *ngIf="returnType" >
+            returns {{returnType}}
+          </span>
+        </div>
+
         <button type="button" (click)="editEntry()" id="edit" class="btn btn-outline-primary">Edit</button>
-        <button type="button" (click)="deleteEntry()" id="delete" class="btn btn-outline-danger">Delete</button>
+        <button type="button" (click)="deleteEntry()" id="delete" class="btn btn-outline-danger">{{getDeleteText()}}</button>
       </div>
       <form>
         <p>{{description}}</p>
       </form>
-      <app-entry-list-item [display] = "display" [name]="dataField.name" [type]="dataField.type" [optional]="dataField.optional"
+      <app-entry-list-item [display] = "display" [isForMethods]="isForMethods"  [exclusiveLabel]="dataField.exclusive" [name]="dataField.name" [description]="dataField.description" [type]="dataField.type" [optional]="dataField.optional"
         [exlusive]="dataField.exclusive" (field)="update(i,$event)" *ngFor="let dataField of dataFields; index as i">
       </app-entry-list-item>
     </div>

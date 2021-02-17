@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "api-parser-1e98e"
+  },
+  "targets": {
+    "api-parser-1e98e": {
+      "hosting": {
+        "api-parser": [
+          "api-parser-1e98e"
+        ]
+      }
+    }
   }
 }

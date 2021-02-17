@@ -1,23 +1,44 @@
-.card{
+.card {
   padding: 30px;
   margin-bottom: 40px;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: 40px auto 0px auto;
 
 }
-#edit,#delete{
+
+#edit,
+#delete {
   min-width: 70px;
   height: 40px;
-margin-left: 30px;
+  margin-left: 30px;
 }
-.desc{
+
+.desc {
   display: flex;
   width: 100%;
   padding-bottom: 16px;
 }
-.button{
+
+.button {
   float: right;
 }
-h2,h3{
+
+.holder {
   flex: 1;
+  padding-left: 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.alert {
+  height: 50px;
+}
+.span{
+  font-weight: 400;
+  height: 30px!important;
+  padding: 2px 10px 2px 10px;
+  margin: 0px;
+  font-style: italic;
 }

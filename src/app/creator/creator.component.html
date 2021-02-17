@@ -1,6 +1,6 @@
 <div class="card-float">
 
-  <h1>Create new entry:</h1>
+  <h1>Create new data type:</h1>
 
   <form>
     <div *ngFor="let error of errors" class="alert alert-warning" role="alert">
@@ -10,7 +10,7 @@
 
     <div class="name input-group mb-3">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroup-sizing-default">Name of component</span>
+        <span class="input-group-text" id="inputGroup-sizing-default">Name of data type</span>
       </div>
       <input [(ngModel)]="name" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" name="name">
     </div>
@@ -21,6 +21,6 @@
     </div>
   </form>
   <app-entry-list-item [display]="false" (field)="change(i,$event)" (del)="deleteItem(i)" *ngFor="let dataField of dataFields;index as i"></app-entry-list-item>
-  <button type="button" class="btn btn-primary" (click)="addField()">+ Add Component</button>
+  <button type="button" class="btn btn-primary" (click)="addField()">+ Add Field</button>
 
 </div>

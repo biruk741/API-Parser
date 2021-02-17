@@ -1,4 +1,7 @@
-<app-navbar></app-navbar>
-<div style="padding: 48px;">
-<router-outlet></router-outlet>
+<div style="min-height: 100%;background-color: #edf2f9;">
+  <app-navbar [dataTypes]="dataTypes"></app-navbar>
+  <div style="padding: 48px 48px 48px 48px;background-color: #edf2f9;">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
 </div>

@@ -14,7 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { SearchBoxComponent } from './smaller-components/search-box/search-box.component';
+import { MethodCreatorComponent } from './method-creator/method-creator.component';
+import { ParameterListItemComponent } from './method-creator/parameter-list-item/parameter-list-item.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import {AngularFireDatabase, AngularFireDatabaseModule} from '@angular/fire/database';
+import { FooterComponent } from './smaller-components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +32,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DisplayListItemComponent,
     ContentComponent,
     ContentTwoComponent,
+    SearchBoxComponent,
+    MethodCreatorComponent,
+    ParameterListItemComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +44,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [],
   bootstrap: [AppComponent]

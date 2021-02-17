@@ -1,0 +1,17 @@
+.card-float{
+  min-height: 40px;
+  padding: 50px;
+  max-width: 1200px;
+  margin: 0px auto 0px auto;
+  background-color: #fff;
+}
+.form-control,.name{
+  width: 50%;
+}
+h1{
+  margin-bottom: 20px;
+}
+#record-btn{
+  float: right;
+  width: 200px;
+}

@@ -19,7 +19,7 @@ export class CreatorComponent implements OnInit {
   name: string;
   description: string;
 
-  errors : ValidationErrorInterface[];
+  errors: ValidationErrorInterface[];
 
   temp: DataField[] = [];
 
@@ -34,33 +34,29 @@ export class CreatorComponent implements OnInit {
     this.dataFields.push({
       name: "",
       type: "",
+      description: "",
       optional: false,
-      exclusive: false
+      exclusive: ""
     });
     this.temp.push({
       name: "",
       type: "",
+      description: "",
       optional: false,
-      exclusive: false
+      exclusive: ""
     });
   }
   save() {
     let obj: DataType = { name: this.name, description: this.description, fields: this.temp }
-    let validator =  new Validator();
-    let errors = validator.validate(obj);
 
-    console.log( errors);
+    console.log(obj);
 
+    this.dataService.addDataType(obj)
+    this.name = "";
+    this.description = "";
+    this.dataFields = [];
+    this.temp = [];
 
-    if (errors.length == 0) {
-      this.dataService.addDataType(obj)
-      this.name = "";
-      this.description = "";
-      this.dataFields = [];
-      this.temp = [];
-    } else{
-      this.errors = errors;
-    }
   }
   deleteItem(i: number) {
     this.dataFields.splice(i, 1);
