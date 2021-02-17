@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node node_modules/.bin/ng serve",
+    "start": "node server.js",
+    "heroku-postbuild": "ng build --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -22,9 +24,11 @@
     "@angular/router": "~11.0.9",
     "bootstrap": "^3.4.1",
     "es6-shim": "^0.35.6",
+    "express": "^4.17.1",
     "firebase": "^8.2.6",
     "mat-progress-buttons": "^9.2.1",
     "ngx-toastr": "^13.2.0",
+    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "validator.ts": "^0.2.2",
